@@ -1,8 +1,10 @@
-import express from "express";
+import "./db";
+import "./models/Video";
+import app from "./server";
 
 const PORT = 5000;
-const app = express();
+
 const handleListening = () =>
-  console.log(`✅ DBDIP-ARDish, SERVER OPEN🚀  http://localhost:${PORT} `);
+  console.log(`✅ Server listenting on http://localhost:${PORT} 🚀`);
 
 app.listen(PORT, handleListening);
