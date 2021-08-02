@@ -1,4 +1,5 @@
-![로고_DIBIDIP](https://user-images.githubusercontent.com/71677810/127866209-aaed683e-b10a-4772-8195-55c15e3fb6c9.png){: width="200" height="200"}
+<img src = "https://user-images.githubusercontent.com/71677810/127866209-aaed683e-b10a-4772-8195-55c15e3fb6c9.png" width="30%" height="30%">
+
 # DIBIDIP의 AR Dish
 
 AR기능이 구현되는 메뉴판을 제작
