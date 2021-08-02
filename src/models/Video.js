@@ -1,15 +1,47 @@
 import mongoose from "mongoose";
 
+const menuSchma = new mongoose.Schema({
+  menuName: String,
+  description: String,
+  ingredients: String,
+  /* 비디오, 사진, 여양성분, 알레르기 가져와야함 */
+  hashtags: [{ type: String }],
+});
+
 const videoSchema = new mongoose.Schema({
-  title: String,
+  menuName: String,
   description: String,
   createdAt: Date,
-  hashtags: [{ type: String }],
-  meta: {
-    views: Number,
-    rating: Number,
-  },
+  /* 영상 가져와야함 */
+});
+
+const imgSchema = new mongoose.Schema({
+  menuName: String,
+  description: String,
+  createdAt: Date,
+  /* png,jpg,jpeg 등 가져와야함 */
+});
+
+const NutrientsSchema = new mongoose.Schema({
+  kcal: Number,
+  carbo: Number,
+  sugar: Number,
+  protein: Number,
+  fat: Number,
+  s_fat: Number,
+  t_fat: Number,
+  chol: Number,
+  sodium: Number,
+});
+
+const AllergySchema = new mongoose.Schema({
+  /* 알레르기 24가지에 대한 bool로 가져와야함 */
 });
 
 const Video = mongoose.model("Video", videoSchema);
+const Menu = mongoose.model("Video", videoSchema);
+const Img = mongoose.model("Video", videoSchema);
+const Nutrient = mongoose.model("Video", videoSchema);
+const Allergy = mongoose.model("Video", videoSchema);
+
 export default Video;
