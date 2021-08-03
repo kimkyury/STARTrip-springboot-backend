@@ -1,8 +1,8 @@
 import Menu from "../models/Menu";
 
 export const home = async (req, res) => {
-  const Menus = await Menu.find({});
-  return res.render("home", { pageTitle: "Home", Menus });
+  const menus = await Menu.find({});
+  return res.render("home", { pageTitle: "Home", menus });
 };
 
 export const watch = (req, res) => {
@@ -16,7 +16,7 @@ export const getEdit = (req, res) => {
 export const postEdit = (req, res) => {
   const { id } = req.params;
   const { title } = req.body;
-  return res.redirect(`/Menus/${id}`);
+  return res.redirect(`/menus/${id}`);
 };
 
 export const getUpload = (req, res) => {
