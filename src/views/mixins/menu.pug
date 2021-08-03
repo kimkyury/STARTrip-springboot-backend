@@ -1,0 +1,9 @@
+mixin menu(menu)
+    div 
+        h4
+            a(href=`/menus/${menu.id}`)=menu.title
+        ul
+            li #{menu.rating}/5.
+            li #{menu.comments} comments.
+            li Posted #{menu.createdAt}.
+            li #{menu.views} views. 

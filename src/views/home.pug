@@ -1,8 +1,8 @@
 extends base
-include mixins/video
+include mixins/menu
 
 block content
-    each video in videos
-        +video(video)
+    each menu in menus
+        +menu(menu)
     else
         li Sorry nothing found.

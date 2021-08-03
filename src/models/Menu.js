@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
-const menuSchma = new mongoose.Schema({
+const menuSchema = new mongoose.Schema({
   menuName: String,
   description: String,
   ingredients: String,
+
   /* 비디오, 사진, 여양성분, 알레르기 가져와야함 */
   hashtags: [{ type: String }],
 });
@@ -38,10 +39,6 @@ const AllergySchema = new mongoose.Schema({
   /* 알레르기 24가지에 대한 bool로 가져와야함 */
 });
 
-const Video = mongoose.model("Video", videoSchema);
-const Menu = mongoose.model("Video", videoSchema);
-const Img = mongoose.model("Video", videoSchema);
-const Nutrient = mongoose.model("Video", videoSchema);
-const Allergy = mongoose.model("Video", videoSchema);
+const Menu = mongoose.model("Menu", menuSchema);
 
-export default Video;
+export default Menu;

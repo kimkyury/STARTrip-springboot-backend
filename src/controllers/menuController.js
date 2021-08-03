@@ -1,8 +1,8 @@
-import Video from "../models/Video";
+import Menu from "../models/Menu";
 
 export const home = async (req, res) => {
-  const videos = await Video.find({});
-  return res.render("home", { pageTitle: "Home", videos });
+  const Menus = await Menu.find({});
+  return res.render("home", { pageTitle: "Home", Menus });
 };
 
 export const watch = (req, res) => {
@@ -16,11 +16,11 @@ export const getEdit = (req, res) => {
 export const postEdit = (req, res) => {
   const { id } = req.params;
   const { title } = req.body;
-  return res.redirect(`/videos/${id}`);
+  return res.redirect(`/Menus/${id}`);
 };
 
 export const getUpload = (req, res) => {
-  return res.render("upload", { pageTitle: "Upload Video" });
+  return res.render("upload", { pageTitle: "Upload Menu" });
 };
 
 export const postUpload = (req, res) => {
