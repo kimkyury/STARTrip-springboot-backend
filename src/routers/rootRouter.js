@@ -1,8 +1,8 @@
 import express from "express";
 import { home, search } from "../controllers/menuController";
 
-const globalRouter = express.Router();
+const rootRouter = express.Router();
 
-globalRouter.get("/", home);
+rootRouter.get("/", home);
 
-export default globalRouter;
+export default rootRouter;

@@ -1,3 +1,4 @@
+import "dotenv/config";
 import "./db";
 import "./models/Menu";
 import app from "./server";
