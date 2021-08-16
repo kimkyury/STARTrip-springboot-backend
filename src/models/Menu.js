@@ -1,20 +1,30 @@
 import mongoose from "mongoose";
 
-const menuSchema = new mongoose.Schema({
-  title: { type: String, required: true, trim: true, maxLength: 80 },
-  description: { type: String, required: true, trim: true, minLength: 20 },
-  createdAt: { type: Date, required: true, default: Date.now },
-  ingredients: [{ type: String, trim: true }],
-  meta: {
-    views: { type: Number, default: 0, required: true },
-    rating: { type: Number, default: 0, required: true },
-  },
-
-  /* 비디오, 사진, 여양성분, 알레르기 가져와야함 */
+const nutrientsSchema = new mongoose.Schema({
+  calories: { type: String, required: true },
+  totalCarbohydrate: { type: String, required: true },
+  totalSugars: { type: String, required: true },
+  protein: { type: String, required: true },
+  totalFat: { type: String, required: true },
+  SaturatedFat: { type: String, required: true },
+  transFat: { type: String, required: true },
+  cholesterol: { type: String, required: true },
+  sodium: { type: String, required: true },
 });
 
-menuSchema.static("formatIngredients", function (ingredients) {
-  return ingredients
+const menuSchema = new mongoose.Schema({
+  title: { type: String, required: true, trim: true, maxLength: 20 },
+  videoUrl: { type: String, required: true },
+  imgUrl: { type: String, required: true },
+  description: { type: String, required: true, trim: true, maxLength: 40 },
+  ingredients: [{ type: String, trim: true }],
+  ingredients: [{ type: String, trim: true }],
+  allergies: [{ type: String, trim: true }],
+  nutrients: nutrientsSchema,
+});
+
+menuSchema.static("formatIngredients", function (allergies) {
+  return allergies
     .split(",")
     .map((word) => (word.startsWith("#") ? word : `#${word}`));
 });
