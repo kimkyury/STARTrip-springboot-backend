@@ -6,7 +6,7 @@ AR기능이 구현되는 메뉴판을 제작
 
 ## AR Dish Backend 개발 환경
 
-## NodsJS, MongoDB, Express, VScode 등
+NodsJS, MongoDB, Express, VScode 등
 
 ## 주요 개발 사항
 
