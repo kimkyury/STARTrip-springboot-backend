@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
 const menuSchema = new mongoose.Schema({
-  videoUrl: { type: String, required: true },
-  imgUrl: { type: String, required: true },
+  fileUrl: { type: String, required: true },
+  imgUrl: { type: String, required: false },
 
   title: { type: String, required: true, trim: true, maxLength: 20 },
   description: { type: String, required: true, trim: true, maxLength: 40 },
-  ingredients: [{ type: String, trim: true }],
-  allergies: [{ type: String, trim: true }],
+  ingredients: [{ type: String, required: true }],
+  hashtags: [{ type: String, trim: true }],
 
   nt_calories: { type: String, required: true },
   nt_totalCarbohydrate: { type: String, required: true },
@@ -20,10 +20,10 @@ const menuSchema = new mongoose.Schema({
   nt_sodium: { type: String, required: true },
 });
 
-menuSchema.static("formatIngredients", function (allergies) {
-  return allergies
+menuSchema.static("formatHashtags", function (hashtags) {
+  return hashtags
     .split(",")
-    .map((word) => (word.startsWith("#") ? word : `#${word}`));
+    .map((word) => (word.startsWith("*") ? word : `#${word}`));
 });
 
 const Menu = mongoose.model("Menu", menuSchema);

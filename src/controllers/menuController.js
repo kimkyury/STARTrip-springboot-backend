@@ -33,7 +33,7 @@ export const postEdit = async (req, res) => {
   await Menu.findByIdAndUpdate(id, {
     title,
     description,
-    allergies: Menu.formatHashtags(allergies),
+    hashtags: Menu.formatHashtags(hashtags),
   });
   return res.redirect(`/menus/${id}`);
 };
@@ -50,6 +50,7 @@ export const postUpload = async (req, res) => {
     description,
     ingredients,
     allergies,
+    hashtags,
     nt_calories,
     nt_totalCarbohydrate,
     nt_totalSugars,
@@ -67,7 +68,8 @@ export const postUpload = async (req, res) => {
       ingredients,
       fileUrl,
       ingredients,
-      allergies: Menu.formatHashtags(allergies),
+      allergies,
+      hashtags: Menu.formatHashtags(hashtags),
       nt_calories,
       nt_totalCarbohydrate,
       nt_totalSugars,

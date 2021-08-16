@@ -11,7 +11,7 @@ import {
 } from "../controllers/menuController";
 import {
   protectorMiddleware,
-  menuUpload,
+  videoUpload,
   menuImageUpload,
 } from "../middlewares";
 
@@ -31,7 +31,7 @@ menuRouter
   .route("/upload")
   .all(protectorMiddleware)
   .get(getUpload)
-  .post(menuUpload.single("video"), postUpload);
+  .post(videoUpload.single("video"), postUpload);
 menuRouter
   .route("/upload")
   .all(protectorMiddleware)
