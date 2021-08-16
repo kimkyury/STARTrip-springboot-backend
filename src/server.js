@@ -4,6 +4,7 @@ import session from "express-session";
 import MongoStroe from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import menuRouter from "./routers/menuRouter";
+import userRouter from "./routers/userRouter";
 import { localsMiddleware } from "./middlewares";
 
 const app = express();
@@ -24,7 +25,9 @@ app.use(
 );
 
 app.use(localsMiddleware);
+app.use("/uploads", express.static("uploads"));
 app.use("/", rootRouter);
 app.use("/menus", menuRouter);
+app.use("/users", userRouter);
 
 export default app;

@@ -3,8 +3,21 @@ mixin menu(menu)
         h4
             a(href=`/menus/${menu.id}`)=menu.title
         p=menu.description
+        h4 원재료들
+        small=menu.ingredients
+        h4 알레르기 목록
         ul 
-            each ingredient in menu.ingredients
-                li=ingredient
-        small=menu.createdAt
+            each allergy in menu.allergies
+                li=allergy
+        h4 영양성분
+        small=menu.ingredients
+        small=menu.nt_calories
+        small=menu.nt_totalCarbohydrate
+        small=menu.nt_totalSugars
+        small=menu.nt_protein
+        small=menu.nt_totalFat
+        small=menu.nt_SaturatedFat
+        small=menu.nt_transFat
+        small=menu.nt_cholesterol
+        small=menu.nt_sodium
         hr 
