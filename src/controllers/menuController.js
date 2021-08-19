@@ -33,7 +33,7 @@ export const postEdit = async (req, res) => {
   await Menu.findByIdAndUpdate(id, {
     title,
     description,
-    hashtags: Menu.formatHashtags(hashtags),
+    hashtags,
   });
   return res.redirect(`/menus/${id}`);
 };
@@ -75,7 +75,7 @@ export const postUpload = async (req, res) => {
       imgUrl,
       ingredients,
       allergies,
-      hashtags: Menu.formatHashtags(hashtags),
+      hashtags,
       nt_calories,
       nt_totalCarbohydrate,
       nt_totalSugars,
@@ -108,31 +108,10 @@ export const search = async (req, res) => {
   let menus = [];
   if (keyword) {
     menus = await Menu.find({
-      title: {
-        $regex: new RegExp(`${keyword}$`, "i"),
+      hashtags: {
+        $regex: new RegExp(keyword, "i"),
       },
     });
   }
   return res.render("search", { pageTitle: "Search", menus });
-};
-
-/* 밑에는 테스트용임 */
-export const gettestUpload = (req, res) => {
-  return res.render("iU", { pageTitle: "image Test" });
-};
-
-export const posttestUpload = async (req, res) => {
-  const { path: menuImageUrl } = req.file;
-  try {
-    await Menu.create({
-      menuImageUrl,
-    });
-    return res.redirect("/");
-  } catch (error) {
-    console.log(error);
-    return res.status(400).render("iU", {
-      pageTitle: "image test",
-      errorMessage: error._message,
-    });
-  }
 };
