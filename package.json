@@ -7,8 +7,7 @@
     "url": "git+https://github.com/kimkyury/ARDish-NodeJS.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/init.js",
-    "front": "cd test && npm start"
+    "dev": "nodemon --exec babel-node src/init.js"
   },
   "author": "kimkyury <mandarining0918@gmail.com",
   "license": "MIT",
@@ -32,8 +31,6 @@
     "@babel/core": "^7.13.10",
     "@babel/node": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
     "nodemon": "^2.0.7"
   }
 }
