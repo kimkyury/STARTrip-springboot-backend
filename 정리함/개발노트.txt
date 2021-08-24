@@ -29,3 +29,5 @@
 # menu 업로드 설정
     (1) 비디오, 이미지 업로드 오케이
     
+
+    "dev": "nodemon --exec babel-node src/init.js"

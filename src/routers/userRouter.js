@@ -16,12 +16,14 @@ const { auth } = require("../auth");
 const t_userRouter = express.Router();
 
 //localhost:5000 접속화면
-t_userRouter.get("/", (req, res) => res.send("Hello, Here is DBLAB"));
+t_userRouter.get("/", (req, res) => {
+  res.send("Hello, Here is DBLAB with React");
+});
 t_userRouter.get("/api/hello", (req, res) => {
-  res.send("Hello, Here is AR-Dish");
+  res.send("Hello, Here is AR-Dish with React");
 });
 
-t_userRouter.route("api/users/auth").all(auth).get(t_getAuth);
+t_userRouter.route("/api/users/auth").all(auth).get(t_getAuth);
 t_userRouter.route("/api/users/logout").all(auth).get(t_getLogout);
 
 export default t_userRouter;
