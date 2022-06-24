@@ -1,10 +1,10 @@
-package startrip.startrip;
+package STARTrip.WeatherScoreDeamon;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StartripApplicationTests {
+class WeatherScoreDeamonApplicationTests {
 
 	@Test
 	void contextLoads() {
