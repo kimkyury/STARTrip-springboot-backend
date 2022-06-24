@@ -1,4 +1,4 @@
-package com.startrip.backend;
+package startrip.startrip;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
