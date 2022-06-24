@@ -1,13 +1,13 @@
-package STARTrip.WeatherScoreDeamon;
+package STARTrip.WeatherScoreDaemon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WeatherScoreDeamonApplication {
+public class WeatherScoreDaemonApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WeatherScoreDeamonApplication.class, args);
+		SpringApplication.run(WeatherScoreDaemonApplication.class, args);
 	}
 
 }
