@@ -1,0 +1,46 @@
+Configutation:
+  name: Default
+  status: info
+
+  Properties:
+    Property:
+      name: weatherscore-path
+      value: "weatherLogs"
+
+  Appenders:
+    Console:
+      name: Console_Appender
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "%highlight{[%-5p]} %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+
+    File:
+      name: File_Appender
+      fileName: logs/fileLogs/logfile.log
+      PatternLayout:
+        pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+
+ # Weather Score 파일 저장
+    RollingFile:
+      - name: WeatherScore_RollingFile_Appender
+        fileName: logs/${weatherscore-path}/rollingfile.log  # 저장위치: weatherLogs/rollingfile.log
+        filePattern: "weatherScore.log.%d{yyyy-MM-dd-hh-mm}" # 저장될 파일명 패턴
+        PatternLayout: # 로그 출력 패턴
+          pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+        Policies: #관리 정책
+          SizeBasedTriggeringPolicy:
+            size: 1 KB
+        DefaultRollOverStrategy:
+          Delete:
+            basePath: "logs/${weatherscore-path}" # delete 설정을 적용할 폴더 경로
+            maxDepth: 2 # 적용할 하위 폴더 Depth
+            IfAccumulatedFileCount: # 해당 수량을 초과하면, 초과된 파일 삭제
+              exceeds: 20
+
+
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: Console_Appender
+        - ref: WeatherScore_RollingFile_Appender

@@ -1,12 +1,14 @@
 package STARTrip.WeatherScoreDeamon.domain.weatherInfo;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class WeatherInfo {
 
     private String baseTime;
-
     private String fcstTime;
-
     private String category;
-    // 날씨
     private int fcstValue;
 }
