@@ -1,4 +1,4 @@
-package STARTrip.WeatherScoreDaemon;
+package STARTrip.WeatherScoreDeamon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

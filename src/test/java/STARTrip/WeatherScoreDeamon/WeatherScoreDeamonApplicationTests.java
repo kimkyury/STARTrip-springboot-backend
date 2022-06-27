@@ -1,4 +1,4 @@
-package STARTrip.WeatherScoreDaemon;
+package STARTrip.WeatherScoreDeamon;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
