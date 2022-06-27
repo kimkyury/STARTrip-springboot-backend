@@ -1,9 +1,0 @@
-[INFO ] 2022-06-27 19:13:10.643 [main] WeatherScoreDaemonApplication - logtest
-[INFO ] 2022-06-27 19:22:30.478 [main] WeatherScoreDaemonApplication - Starting WeatherScoreDaemonApplication using Java 11.0.13 on MacBookui-MacBookAir.local with PID 86213 (/Users/macbook/Desktop/dockerdeamon/build/classes/java/main started by macbook in /Users/macbook/Desktop/dockerdeamon)
-[INFO ] 2022-06-27 19:22:30.485 [main] WeatherScoreDaemonApplication - No active profile set, falling back to 1 default profile: "default"
-[INFO ] 2022-06-27 19:22:31.353 [main] TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-[INFO ] 2022-06-27 19:22:31.363 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-[INFO ] 2022-06-27 19:22:31.364 [main] StandardService - Starting service [Tomcat]
-[INFO ] 2022-06-27 19:22:31.364 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64]
-[INFO ] 2022-06-27 19:22:31.473 [main] [/] - Initializing Spring embedded WebApplicationContext
-[INFO ] 2022-06-27 19:22:31.473 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 944 ms
