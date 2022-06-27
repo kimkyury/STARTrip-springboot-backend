@@ -7,10 +7,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@Slf4j
 public class WeatherScoreDaemonApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WeatherScoreDaemonApplication.class, args);
+		log.info("testsssss");
 
 	}
 }

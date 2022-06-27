@@ -1,0 +1,9 @@
+[INFO ] 2022-06-27 19:23:51.570 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-06-27 19:23:51.575 [main] StandardService - Starting service [Tomcat]
+[INFO ] 2022-06-27 19:23:51.575 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64]
+[INFO ] 2022-06-27 19:23:51.659 [main] [/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2022-06-27 19:23:51.660 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1004 ms
+[INFO ] 2022-06-27 19:23:51.920 [main] WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+[INFO ] 2022-06-27 19:23:52.048 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-06-27 19:23:52.060 [main] TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 2022-06-27 19:23:52.079 [main] WeatherScoreDaemonApplication - Started WeatherScoreDaemonApplication in 1.973 seconds (JVM running for 3.002)

@@ -24,7 +24,7 @@ Configutation:
     RollingFile:
       - name: WeatherScore_RollingFile_Appender
         fileName: logs/${weatherscore-path}/rollingfile.log  # 저장위치: weatherLogs/rollingfile.log
-        filePattern: "weatherScore.log.%d{yyyy-MM-dd-hh-mm}" # 저장될 파일명 패턴
+        filePattern: "logs/${weatherscore-path}/weatherScore.log.%d{yyyy-MM-dd-hh-mm}" # 저장될 파일명 패턴
         PatternLayout: # 로그 출력 패턴
           pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
         Policies: #관리 정책
