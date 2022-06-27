@@ -1,2 +1,4 @@
 logging:
   config: classpath:log4j2.yml
+
+apikey: nA2mf5P6PtsgCeoR625UQT8SHz6x8qLsN3RQb3qtLJssQ2RoHchsuIuwYpaFtlbVKr9rq1VV%2Bm0T8ZbAnXiu5g%3D%3D
