@@ -39,49 +39,32 @@ public class WeatherScoreService {
     public void setWeatherPlace() {
         List<Place> places = placeRepository.findAll();
         for (Place place : places) {
-            currentLatitude =  String.valueOf(place.getLatitude());
-            try{
-                currentLongitude = String.valueOf(place.getLongitude());
-            } catch(NullPointerException e){
-                currentLongitude = "0.000000";
-            }
-            currentPlaceId = place.getId();
-            currentPlaceName = place.getPlaceName();
 
-            try {
-                weatherScore = weatherapi.getApiResult(currentLatitude, currentLongitude);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (NullPointerException e){
-                continue;
-            }
+            // getWeatherscoreAsPlace 함수에서 최초의 Weatherscore가 만들어진다
+            Weatherscore weatherscore = getWeatherscoreAsPlace(place.getId());
 
-            if (weatherScore.equals(userWeather)) {
-                resultPlaces.add(place);
-            }
+            String score = searchWeatherScore(place);
+            weatherscore.updateScore(score);
+            weatherscoreRepository.save(weatherscore);
         }
     }
 
-    public void createWeatherScore(Place place) {
-        // 생성될 때: 최초의 지역에 대하여 score를 계산할 때
-        // 1시간마다 database에 있는 place의 날씨를 조회할 때, 그 placeId를 가지는 weatherSCore가 없으면 작동
+    public String searchWeatherScore(Place place) {
+        String score = "";
+        String latitude = String.valueOf(place.getLatitude());
+        String longitude;
+        try{
+            longitude = String.valueOf(place.getLongitude());
+        }catch (NullPointerException e){
+            longitude = "0.0000000";
+        }
 
-        WeatherscoreDto dto = new WeatherscoreDto();
-        dto.setLatitude(Double.valueOf(currentLatitude));
-        dto.setLongitude(Double.valueOf(currentLongitude));
-        dto.setPlaceId(currentPlaceId);
-        dto.setPlaceName(currentPlaceName);
-
-        Weatherscore weatherscore = Weatherscore.of(dto);
-    }
-
-    public void updateWeatherScore(UUID weatherscoreId, String score){
-        // 1시간마다 database에 있는 place의 날씨를 조회할 때마다 변동
-        weatherscoreRepository.findById(weatherscoreId)
-                .orElseThrow(() -> new RuntimeException("해당 weatherscore은 존재하지 않습니다"));
-        Weatherscore weatherscore = getWeatherscore(weatherscoreId);
-        weatherscore.updateScore(score);
-        weatherscoreRepository.save(weatherscore);
+        try {
+            score = weatherapi.getApiResult(latitude, longitude);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return score;
     }
 
     public Weatherscore getWeatherscore(UUID weatherscoreId){
@@ -92,11 +75,35 @@ public class WeatherScoreService {
         return weatherscore.get();
     }
 
-
-    public void updateSchduler(){
-
-
+    public Weatherscore getWeatherscoreAsPlace(UUID placeId){
+        Optional<Weatherscore> weatherscore = weatherscoreRepository.findByPlaceId(placeId);
+        if(weatherscore.isEmpty()) {
+            Place place = getPlace(placeId);
+            createWeatherscore(place);
+        }
+        return weatherscore.get();
     }
+
+    public void createWeatherscore(Place place){
+
+        WeatherscoreDto dto = new WeatherscoreDto();
+        dto.setLatitude(Double.valueOf(currentLatitude));
+        dto.setLongitude(Double.valueOf(currentLongitude));
+        dto.setPlaceId(currentPlaceId);
+        dto.setPlaceName(currentPlaceName);
+
+        Weatherscore weatherscore = Weatherscore.of(dto);
+        weatherscoreRepository.save(weatherscore);
+    }
+
+    public Place getPlace(UUID placeId){
+        Optional<Place> place = placeRepository.findById(placeId);
+        if(place.isEmpty()) {
+            throw new RuntimeException("해당 place가 없습니다.");
+        }
+        return place.get();
+    }
+
 
 
 }
