@@ -30,13 +30,13 @@ public class PostgreSQLtest  implements ApplicationRunner {
             System.out.println(connection.getMetaData().getUserName());
 
 
-            Statement statement = connection.createStatement();
-            String sql = "select * from weather;";
-            ResultSet rs = statement.executeQuery(sql);
+            //Statement statement = connection.createStatement();
+            //String sql = "select * from weatherscore;";
+            //ResultSet rs = statement.executeQuery(sql);
 
-            while(rs.next()){
-                log.info(rs.getInt(1) + "\t" + rs.getInt(2));
-            }
+            //while(rs.next()){
+            //    log.info(rs.getInt(1) + "\t" + rs.getInt(2));
+            //}
 
 
         }

@@ -19,19 +19,19 @@ import java.util.UUID;
 public class WeatherScoreService {
     private final PlaceRepository placeRepository;
     private final WeatherscoreRepository weatherscoreRepository;
-
     private WeatherApi weatherapi;
+
     private final List<Place> resultPlaces = new ArrayList<>();
     private String weatherScore;
     private String userWeather;
 
     private String currentLongitude;
-    private String currentLatitude;
-    private String currentPlaceName;
+
     private UUID currentPlaceId;
 
     @Autowired
-    public WeatherScoreService(PlaceRepository placeRepository, WeatherscoreRepository weatherscoreRepository){
+    public WeatherScoreService(PlaceRepository placeRepository, WeatherscoreRepository weatherscoreRepository, WeatherApi weatherApi){
+       this.weatherapi = weatherApi;
         this.placeRepository = placeRepository;
         this.weatherscoreRepository = weatherscoreRepository;
     }
@@ -42,11 +42,22 @@ public class WeatherScoreService {
 
             // getWeatherscoreAsPlace 함수에서 최초의 Weatherscore가 만들어진다
             Weatherscore weatherscore = getWeatherscoreAsPlace(place.getId());
-
             String score = searchWeatherScore(place);
             weatherscore.updateScore(score);
             weatherscoreRepository.save(weatherscore);
         }
+    }
+
+    public Weatherscore getWeatherscoreAsPlace(UUID placeId){
+        Optional<Weatherscore> weatherscore = weatherscoreRepository.findByPlaceId(placeId);
+        if(weatherscore.isEmpty()) {
+            Place place = getPlace(placeId);
+            weatherscore = Optional.ofNullable(createWeatherscore(place));
+        }
+
+        weatherscore = weatherscoreRepository.findByPlaceId(placeId);
+
+        return weatherscore.get();
     }
 
     public String searchWeatherScore(Place place) {
@@ -67,6 +78,32 @@ public class WeatherScoreService {
         return score;
     }
 
+    public Weatherscore createWeatherscore(Place place){
+
+        String latitude = String.valueOf(place.getLatitude());
+        String longitude = String.valueOf(place.getLongitude());
+
+//        WeatherscoreDto dto = new WeatherscoreDto();
+//        dto.setLatitude(Double.valueOf(latitude));
+//        dto.setLongitude(Double.valueOf(longitude));
+//        dto.setPlaceId(place.getId());
+//        dto.setPlaceName(place.getPlaceName());
+//        dto.setScore("0");
+
+        Weatherscore weatherscore = Weatherscore.builder()
+                        .id(UUID.randomUUID())
+                        .placeId(place.getId())
+                        .latitude(place.getLatitude())
+                        .longitude(place.getLongitude())
+                        .placeName(place.getPlaceName())
+                        .score("0")
+                .build();
+
+        weatherscoreRepository.save(weatherscore);
+
+        return weatherscoreRepository.findByPlaceId(place.getId()).get();
+    }
+
     public Weatherscore getWeatherscore(UUID weatherscoreId){
         Optional<Weatherscore> weatherscore = weatherscoreRepository.findById(weatherscoreId);
         if(weatherscore.isEmpty()) {
@@ -75,26 +112,9 @@ public class WeatherScoreService {
         return weatherscore.get();
     }
 
-    public Weatherscore getWeatherscoreAsPlace(UUID placeId){
-        Optional<Weatherscore> weatherscore = weatherscoreRepository.findByPlaceId(placeId);
-        if(weatherscore.isEmpty()) {
-            Place place = getPlace(placeId);
-            createWeatherscore(place);
-        }
-        return weatherscore.get();
-    }
 
-    public void createWeatherscore(Place place){
 
-        WeatherscoreDto dto = new WeatherscoreDto();
-        dto.setLatitude(Double.valueOf(currentLatitude));
-        dto.setLongitude(Double.valueOf(currentLongitude));
-        dto.setPlaceId(currentPlaceId);
-        dto.setPlaceName(currentPlaceName);
 
-        Weatherscore weatherscore = Weatherscore.of(dto);
-        weatherscoreRepository.save(weatherscore);
-    }
 
     public Place getPlace(UUID placeId){
         Optional<Place> place = placeRepository.findById(placeId);

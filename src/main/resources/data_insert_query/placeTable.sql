@@ -22,7 +22,9 @@ create table weatherscore
     weatherscore_id uuid not null
         constraint weatherscore_pkey
             primary key,
+    place_id uuid,
+    place_name varchar(255),
     latitude double precision,
     longitude double precision,
-    weatherscore varchar(10)
+    score varchar(10)
 );

@@ -36,6 +36,7 @@ public class WeatherApi  {
 
     private ArrayList<LinkedHashMap> get(String x, String y, String date, String time) throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); /*URL*/
+        //http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") +"=" + openApiUtil.getDATA_GO_KR_API_KEY()); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
@@ -52,6 +53,7 @@ public class WeatherApi  {
         HttpEntity<Map<String, String>> entity = new HttpEntity<>(headers);
 
         ResponseEntity<Map> response = restTemplate.exchange(URI.create(urlBuilder.toString()), HttpMethod.GET, entity, Map.class);
+        log.info(response.toString());
 
         ObjectMapper mapper = new ObjectMapper();
         // TODO : 최근 1일 조회 예외처리 잡기
@@ -59,6 +61,8 @@ public class WeatherApi  {
 
         // 추출
         LinkedHashMap responseResult = (LinkedHashMap) ((LinkedHashMap) response.getBody().get("response")).get("body");
+        log.info(responseResult.toString());
+
         LinkedHashMap bodyResult = (LinkedHashMap) responseResult.get("items");
         ArrayList<LinkedHashMap> items = (ArrayList<LinkedHashMap>) bodyResult.get("item");
 

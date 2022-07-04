@@ -24,6 +24,8 @@ public class OpenApiUtil {
 
     // 기준시간을 기준으로 전날 데이터를 가져올지 결정하는 메소드
     public LinkedHashMap getDateTime(String datePattern){
+        //log.info("!!!!!!!!!!!!" + DATA_GO_KR_API_KEY);
+
         // 기준 시간 (0500 부터 예보조회가 가능함)
         LocalDateTime startDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(5, 0, 0));
         // 현재 시각
