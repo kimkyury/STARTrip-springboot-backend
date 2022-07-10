@@ -36,6 +36,7 @@ public class WeatherscoreByTown {
             .id(UUID.randomUUID())
             .cityName(dto.getCityName())
             .weatherScore(dto.getWeatherScore())
+            .areacode(dto.getAreacode())
             .build();
     }
 
