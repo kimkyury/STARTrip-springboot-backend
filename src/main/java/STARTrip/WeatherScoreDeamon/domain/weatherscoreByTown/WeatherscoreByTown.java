@@ -1,5 +1,6 @@
 package STARTrip.WeatherScoreDeamon.domain.weatherscoreByTown;
 
+import STARTrip.WeatherScoreDeamon.dto.WeatherscoreByTownDto;
 import java.util.UUID;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,13 +26,16 @@ public class WeatherscoreByTown {
     private String weatherScore;
 
 
-    public static WeatherscoreByTown of (Object obj){
+    public static WeatherscoreByTown of (WeatherscoreByTownDto dto){
         return WeatherscoreByTown.builder()
             .id(UUID.randomUUID())
-            .cityNmae()
+            .cityName(dto.getCityName())
+            .weatherScore(dto.getWeatherScore())
+            .build();
     }
 
-
-
+    public void updateScore(String score){
+        this.weatherScore = score;
+    }
 
 }
