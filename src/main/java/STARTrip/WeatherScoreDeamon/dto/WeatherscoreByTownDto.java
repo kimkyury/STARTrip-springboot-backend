@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 public class WeatherscoreByTownDto {
 
-    @NotNull
     private String cityName;
     private String weatherScore;
+    private String areacode;
 
 }
