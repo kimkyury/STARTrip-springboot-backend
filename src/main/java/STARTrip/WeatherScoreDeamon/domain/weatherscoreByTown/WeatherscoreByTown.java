@@ -1,6 +1,7 @@
 package STARTrip.WeatherScoreDeamon.domain.weatherscoreByTown;
 
 import STARTrip.WeatherScoreDeamon.dto.WeatherscoreByTownDto;
+import com.sun.istack.NotNull;
 import java.util.UUID;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,11 +20,15 @@ public class WeatherscoreByTown {
     @Column(name = "city_id")
     private UUID id;
 
+    @NotNull
     @Column(name = "city_name")
     private String cityName;
 
     @Column(name = "weather_score")
     private String weatherScore;
+
+    @NotNull
+    private String areacode;
 
 
     public static WeatherscoreByTown of (WeatherscoreByTownDto dto){
