@@ -72,6 +72,11 @@ public class OpenApiUtil {
             }
         }
 
+        String appendZero = "0";
+        if(time.charAt(0) != '0'){
+            time = appendZero + time;
+        }
+
 
 //        // 기준 시간 (0500 부터 예보조회가 가능함)
 //        LocalDateTime startDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(5, 0, 0));
